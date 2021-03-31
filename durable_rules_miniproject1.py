@@ -59,13 +59,13 @@ with ruleset('engineering'):
   def sensorCountVAelect(c):
     c.assert_fact('engineering',{'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_count':3})
   @when_all((m.slot_en == 1) & (m.device_type == 'VB') & (m.slot_type == 'Elect')) #디바이스타입이VB이고, 슬롯타입이 Elect인경우
-  def sensorCountVBelec(c):
+  def sensorCountVBelect(c):
     c.assert_fact('engineering',{'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_count':4})
   @when_all((m.slot_en == 1) & (m.device_type == 'VB') & (m.slot_type == 'Temp')) #디바이스타입이VB이고, 슬롯타입이 Temp인경우
   def sensorCountVBtemp(c):
     c.assert_fact('engineering',{'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_count':4})
   @when_all((m.slot_en == 1) & (m.device_type == 'VC') & (m.slot_type == 'Elect')) #디바이스타입이VC이고, 슬롯타입이 Elect인경우
-  def sensorCountVCelec(c):
+  def sensorCountVCelect(c):
   	c.assert_fact('engineering',{'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_count':4})
   @when_all((m.slot_en == 1) & (m.device_type == 'VC') & (m.slot_type == 'Temp')) #디바이스타입이VC이고, 슬롯타입이 Temp인경우
   def sensorCountVCtemp(c):
@@ -90,19 +90,19 @@ with ruleset('engineering'):
    
   #센서카테고리지정, 센서별종류지정
   @when_all((m.slot_type == 'Elect') & (m.sensor_count == 3)) #슬롯타입이Elect이고,세개의센서일 경우
-  def sensorTypeElect(c):    
+  def sensorCategoryElect(c):    
     c.assert_fact({'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_category':'elect'}) #센서카테고리지정
   @when_all(m.sensor_category == 'elect')	
   def outputSensorTypeElect(c):    
     print('{0}의 첫번째 Sensor Type : {1}, 두번째 Sensor Type : {2}, 세번째 Sensor Type : {3}'.format(c.m.name, sensor_elect_3[0], sensor_elect_3[1], sensor_elect_3[2]))
   @when_all((m.slot_type == 'Elect') & (m.sensor_count == 4)) #슬롯타입이Elect이고,네개의센서일 경우
-  def sensorTypeOnly(c):
+  def sensorCategoryDefault(c):
   	c.assert_fact({'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_category':'default'}) #센서카테고리지정
   @when_all(m.sensor_category == 'default')	
-  def outputSensorTypeOnly(c):
+  def outputSensorTypeUHF(c):
   	print('{0} Sensor type only UHF! 해당 디바이스는 UHF센서만 사용가능합니다'.format(c.m.name))
   @when_all((m.slot_type == 'Temp') & (m.sensor_count == 4)) #슬롯타입이Temp이고,네개의센서일 경우
-  def sensorTypeTemp(c):
+  def sensorCategoryTemp(c):
   	c.assert_fact({'name':c.m.name, 'device_type':c.m.device_type, 'slot_type':c.m.slot_type, 'sensor_category':'temp'}) #센서카테고리지정
   @when_all(m.sensor_category == 'temp')	
   def outputSensorTypeTemp(c):
